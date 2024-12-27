@@ -61,7 +61,7 @@ main() {
 
     if available apt-get; then
         export DEBIAN_FRONTEND=noninteractive
-        apt_arch=$([ "$arch"=="x86_64" ] && echo "amd64" || echo "arm64")
+        apt_arch=$([ "$arch" = "x86_64" ] && echo "amd64" || echo "arm64")
         show $sudo mkdir -p --mode=0755 /usr/share/keyrings
         show $curl "https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg"|\
             show $sudo tee /usr/share/keyrings/brave-browser-archive-keyring.gpg >/dev/null
