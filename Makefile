@@ -35,7 +35,7 @@ manjarolinux/base: setup = mv /etc/pacman.conf{.pacnew,} || true
 $(supported):
 	printf "Testing $(distro) (supported)... "
 	if docker run --rm -v "$$PWD/install.sh:/install.sh" "$(distro)" \
-	   sh -c '$(or $(setup),true) && /install.sh && brave-browser --version || brave --version' >"$(log)" 2>&1; then
+	   sh -c '$(or $(setup),true) && /install.sh && (brave-browser --version || brave --version) 2>/dev/null' >"$(log)" 2>&1; then
 	    echo OK
 	else
 	    printf "Failed\n\n" && tail -v "$(log)" && false
